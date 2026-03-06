@@ -70,7 +70,7 @@ function makeChordPill(chord) {
   const span = document.createElement("span");
   span.className = "chord-pill";
 
-  const m = chord.match(/^([A-G][#b]?)(.*)/);
+  const m = chord.match(/^([A-G][#]?m?)(.*)/);
   const root   = m ? m[1] : chord;
   const suffix = m ? m[2] : "";
 
@@ -80,7 +80,7 @@ function makeChordPill(chord) {
   span.appendChild(rootSpan);
 
   if (suffix) {
-    const sufSpan = document.createElement("span");
+    const sufSpan = document.createElement("sup");
     sufSpan.className = "chord-suffix";
     sufSpan.textContent = suffix;
     span.appendChild(sufSpan);
@@ -91,8 +91,8 @@ function makeChordPill(chord) {
 
 // ── イベント ──────────────────────────────────────────────────
 
-btnUp.addEventListener("click", () => { semitones++; render(); });
-btnDown.addEventListener("click", () => { semitones--; render(); });
+btnUp.addEventListener("click",   () => { semitones++; if (semitones === 12) semitones = 0; render(); });
+btnDown.addEventListener("click", () => { semitones--; if (semitones === -12) semitones = 0; render(); });
 btnReset.addEventListener("click", () => { semitones = 0; render(); });
 textarea.addEventListener("input", render);
 

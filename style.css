@@ -2,6 +2,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  --chord-font: 'Georgia', serif;
 }
 
 body {
@@ -107,7 +108,6 @@ textarea:focus {
   border-color: rgba(255,209,102,0.5);
 }
 
-/* コントロール */
 .controls {
   display: flex;
   align-items: center;
@@ -197,8 +197,7 @@ textarea:focus {
 }
 
 .chord-pill {
-  display: inline-flex;
-  align-items: baseline;
+  display: inline-block;
   background: rgba(255,255,255,0.05);
   border: 1.5px solid rgba(255,209,102,0.2);
   border-radius: 4px;
@@ -208,6 +207,7 @@ textarea:focus {
   cursor: default;
   transition: all 0.15s;
   user-select: none;
+  white-space: nowrap;
 }
 
 .chord-pill:hover {
@@ -220,8 +220,7 @@ textarea:focus {
   font-size: 22px;
   font-weight: bold;
   color: #f0e6cc;
-  font-family: 'Georgia', serif;
-  letter-spacing: -0.01em;
+  font-family: var(--chord-font);
   line-height: 1;
   transition: color 0.15s;
 }
@@ -231,10 +230,10 @@ textarea:focus {
 }
 
 .chord-suffix {
-  font-size: 13px;
+  font-size: 18px;
   color: #f0e6cc;
-  margin-left: 2px;
-  font-family: 'Georgia', serif;
+  margin-left: 1px;
+  font-family: var(--chord-font);
   transition: color 0.15s;
 }
 
