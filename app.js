@@ -1,9 +1,9 @@
 // ── UIロジック ────────────────────────────────────────────────
 
-const EXAMPLE = `Am  F  C  G
-Dm7  E7  Am
-Fsus4  G  Cadd9  Am7
-Bdim  E  Am`;
+const EXAMPLE = `Gm Am7(-5) D7 D#
+Ddim Cm F7 A#M7
+Fsus4 G6 Cadd9 Am7
+Bdim E Am`;
 
 let semitones = 0;
 
