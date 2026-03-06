@@ -13,6 +13,7 @@ const semLabel    = document.getElementById("semitone-label");
 const btnReset    = document.getElementById("btn-reset");
 const btnUp       = document.getElementById("btn-up");
 const btnDown     = document.getElementById("btn-down");
+const semEquiv    = document.getElementById("semitone-equiv");
 
 // 初期値
 textarea.value = EXAMPLE;
@@ -59,10 +60,22 @@ function render() {
     semLabel.textContent = "Original";
     semLabel.classList.remove("active");
     btnReset.classList.add("hidden");
+    semEquiv.classList.add("hidden");
   } else {
     semLabel.textContent = (semitones > 0 ? "+" : "") + semitones;
     semLabel.classList.add("active");
     btnReset.classList.remove("hidden");
+
+    // ±11を超えたらmod12した等価値を表示
+    const abs = Math.abs(semitones);
+    if (abs > 11) {
+      const equiv = (abs % 12) * (semitones > 0 ? 1 : -1);
+      const equivStr = equiv === 0 ? "= Original" : `= ${equiv > 0 ? "+" : ""}${equiv}`;
+      semEquiv.textContent = equivStr;
+      semEquiv.classList.remove("hidden");
+    } else {
+      semEquiv.classList.add("hidden");
+    }
   }
 }
 
@@ -91,8 +104,8 @@ function makeChordPill(chord) {
 
 // ── イベント ──────────────────────────────────────────────────
 
-btnUp.addEventListener("click",   () => { semitones++; if (semitones === 12) semitones = 0; render(); });
-btnDown.addEventListener("click", () => { semitones--; if (semitones === -12) semitones = 0; render(); });
+btnUp.addEventListener("click",   () => { semitones++; render(); });
+btnDown.addEventListener("click", () => { semitones--; render(); });
 btnReset.addEventListener("click", () => { semitones = 0; render(); });
 textarea.addEventListener("input", render);
 
